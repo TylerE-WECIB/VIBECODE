@@ -7,8 +7,9 @@ var game_playing := true
 var keyboard_keys = [
 	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
 	"1", "2", "3", "4", "5", "6", "7", "8", "9",
-	"[", "]", ";", "'", ".", ",", "-",
-	"up", "down", "left", "right"]
+	"[", "]", ";", "'", ">", "-",
+	"up", "down", "left", "right",
+	"~", "Left Shift", "Right Shift", "Left Alt", "Right Alt", "Left Ctrl", "Right Ctrl"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,6 +18,7 @@ func _ready() -> void:
 	$ButtonToPress.visible = true
 	$ProgressBar.visible = true
 	$Restart.visible = false
+	$"High Score".visible = false
 	randomize()
 
 
@@ -50,7 +52,11 @@ func _on_qte_timer_timeout() -> void:
 	$AnimationPlayer.play("punch")
 	$ButtonToPress.visible = false
 	$Music.stop()
-	$ButtonToPress.text = str(score*15.8) + " Mt."
+	score*=15.8
+	if score > Global.high_score:
+		Global.high_score = score
+	$ButtonToPress.text = str(score) + " Mt."
+	$"High Score".text = "High Score: " + str(Global.high_score) + " Mt."
 
 
 func _on_restart_pressed() -> void:
