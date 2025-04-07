@@ -1,10 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://bl1yyw3be7p1a"]
+[gd_scene load_steps=43 format=3 uid="uid://bl1yyw3be7p1a"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_05bj0"]
 [ext_resource type="Texture2D" uid="uid://b3qcmgnlyx3i3" path="res://Sprites/crowd.png" id="1_taly0"]
 [ext_resource type="Texture2D" uid="uid://d2qhox33mogtm" path="res://Sprites/stage.png" id="2_harbt"]
 [ext_resource type="Texture2D" uid="uid://461od2dljobr" path="res://Sprites/tiles.png" id="4_cakna"]
+[ext_resource type="Texture2D" uid="uid://cbrk085djc32l" path="res://Sprites/boom.png" id="5_4wdel"]
 [ext_resource type="Texture2D" uid="uid://chv34lc8ssiiw" path="res://Sprites/kirby.png" id="5_cng0u"]
+[ext_resource type="Texture2D" uid="uid://df6wdgbhoo3e1" path="res://Sprites/kaboom.png" id="6_17j2v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ntew"]
 atlas = ExtResource("1_taly0")
@@ -65,6 +67,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3jt7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4wdel")
 }],
 "loop": true,
 "name": &"default",
@@ -102,6 +107,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_6seos"]
 resource_name = "punch"
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,28 +115,289 @@ tracks/0/path = NodePath("../Kirby:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": []
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.333333, 0.4, 0.433333, 0.466667, 0.5, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50), Vector2(0, 50), Vector2(0, -25), Vector2(0, 25), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../EarthGone:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../EarthGone:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../EarthGone")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.866667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.466667, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_qdqjq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Kirby:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../EarthGone:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../EarthGone:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yguho"]
 _data = {
+"RESET": SubResource("Animation_qdqjq"),
 "punch": SubResource("Animation_6seos")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h52wt"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(0, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvqug"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(220, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgk2b"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(440, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_150ln"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(660, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq5kg"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(880, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pey0k"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(1100, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js7d2"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(1320, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77gne"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(1540, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eevcf"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(1760, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akbyb"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(1980, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bh8i"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(2200, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8gy8"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(2420, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc2vw"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(2640, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ibuu"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(2860, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evkuh"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(3080, 0, 220, 165)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nbkj"]
+atlas = ExtResource("6_17j2v")
+region = Rect2(3300, 0, 220, 165)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pk010"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h52wt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvqug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgk2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_150ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq5kg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pey0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js7d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77gne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eevcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akbyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bh8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8gy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc2vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ibuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evkuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nbkj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c7wth"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_moqq1"]
+font_size = 70
+font_color = Color(0.972549, 0.909804, 0.282353, 1)
+outline_size = 13
+outline_color = Color(0.533333, 0.0941176, 0.0941176, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_05bj0")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -138.0
+offset_top = -206.0
+offset_right = 1358.0
+offset_bottom = 917.0
+color = Color(0, 0.470588, 0.941176, 1)
+
 [node name="Crowd" type="AnimatedSprite2D" parent="."]
-position = Vector2(573, 233)
-scale = Vector2(4.55039, 3.24)
+position = Vector2(567, 195)
+scale = Vector2(4.55039, 3.90767)
 sprite_frames = SubResource("SpriteFrames_c2npq")
 
 [node name="Stage" type="Sprite2D" parent="."]
-position = Vector2(575.5, 324)
-scale = Vector2(4.46124, 3.24)
+position = Vector2(579, 334)
+scale = Vector2(4.54264, 3.34)
 texture = ExtResource("2_harbt")
 
 [node name="Tiles" type="AnimatedSprite2D" parent="."]
@@ -148,3 +415,31 @@ root_node = NodePath("../Tiles")
 libraries = {
 "": SubResource("AnimationLibrary_yguho")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(571, 325)
+
+[node name="EarthGone" type="AnimatedSprite2D" parent="."]
+position = Vector2(586, 335)
+scale = Vector2(5.70716, 4.27197)
+sprite_frames = SubResource("SpriteFrames_pk010")
+frame = 15
+
+[node name="Arrows" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_c7wth")
+
+[node name="Sfx" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ButtonToPress" type="Label" parent="."]
+offset_left = 557.0
+offset_top = 182.0
+offset_right = 598.0
+offset_bottom = 278.0
+text = "a"
+label_settings = SubResource("LabelSettings_moqq1")
+
+[node name="QTE Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="QTE Timer" to="." method="_on_qte_timer_timeout"]
