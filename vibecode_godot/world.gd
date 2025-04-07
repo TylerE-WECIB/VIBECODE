@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 
 func _on_qte_timer_timeout() -> void:
 	game_playing = false
-	$Sfx.pitch_scale = 0;
 	$AnimationPlayer.play("punch")
 	$ButtonToPress.visible = false
 	$Music.stop()
