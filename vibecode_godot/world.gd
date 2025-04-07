@@ -5,8 +5,8 @@ var score := 0
 var key_pressed := true
 var game_playing := true
 var keyboard_keys = [
-	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-	"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+	"1", "2", "3", "4", "5", "6", "7", "8", "9",
 	"[", "]", ";", "'", ".", ",", "-",
 	"up", "down", "left", "right"]
 
@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 
 func _on_qte_timer_timeout() -> void:
 	game_playing = false
+	$Sfx.pitch_scale = 0;
 	$AnimationPlayer.play("punch")
 	$ButtonToPress.visible = false
 	$Music.stop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bl1yyw3be7p1a"]
+[gd_scene load_steps=52 format=3 uid="uid://bl1yyw3be7p1a"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_05bj0"]
 [ext_resource type="Texture2D" uid="uid://b3qcmgnlyx3i3" path="res://Sprites/crowd.png" id="1_taly0"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://chv34lc8ssiiw" path="res://Sprites/kirby.png" id="5_cng0u"]
 [ext_resource type="Texture2D" uid="uid://df6wdgbhoo3e1" path="res://Sprites/kaboom.png" id="6_17j2v"]
 [ext_resource type="AudioStream" uid="uid://bs13ydu7i3brw" path="res://Sounds/deltarune-explosion.mp3" id="7_fhper"]
+[ext_resource type="AudioStream" uid="uid://yw14i0wd7j18" path="res://Sounds/light.mp3" id="8_7pb4h"]
 [ext_resource type="FontFile" uid="uid://bybi7jfy1jyk8" path="res://kirby-super-star-dialogue.ttf" id="8_ukkdd"]
+[ext_resource type="AudioStream" uid="uid://dp8hl77a6v7j0" path="res://Sounds/heavy.mp3" id="9_loar1"]
 [ext_resource type="AudioStream" uid="uid://g1645xxje144" path="res://Sounds/youtube_OAdKmgQa7Us_audio.mp3" id="10_4hwjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ntew"]
@@ -338,7 +340,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_b1ped"]
 resource_name = "screen_shake"
-length = 0.233337
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -351,10 +353,25 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-5, 0), Vector2(5, 0), Vector2(0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sfx")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_7pb4h")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_whgiq"]
 resource_name = "screen_shake_big"
-length = 0.233337
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -367,6 +384,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(-20, 0), Vector2(20, 0), Vector2(0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sfx")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_loar1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yguho"]
 _data = {
