@@ -9,9 +9,8 @@ This game script is designed in **Godot Engine** and involves quick-time events 
 Before deploying this game, ensure the following requirements are met:
 
 ### Software Requirements:
-- **Godot Engine** (version 3.x or later)
+- **Godot Engine** (version 4.3 or later)
 - **Operating System**: Cross-platform (Windows, macOS, Linux) support.
-- **Audio and Animation Assets**: Ensure sound files and animation files used in the script (such as `$Crowd.play()` and `$AnimationPlayer`) are present in the project.
 
 ### Hardware Requirements:
 - **Minimum System Specs**: Moderate CPU and GPU capable of running basic 2D games.
@@ -22,7 +21,11 @@ Before deploying this game, ensure the following requirements are met:
 
 ### Configuration:
 - Ensure the `Global` singleton script exists and contains the variable `high_score` for saving high scores.
-- Verify the assets referenced in the script (like `Crowd`, `EarthGone`, `ButtonToPress`, `ProgressBar`, `Restart`, and `High Score`) are named correctly in the scene tree.
+- Verify the assets referenced in the script (like `$Crowd`, `$EarthGone`, `$ButtonToPress`, `$ProgressBar`, `$Restart`, and `$High Score`) are named correctly in the scene tree.
+- Ensure sound files and animation files/nodes used in the script (such as `deltarune-explosion.mp3`, `kirby.png`, and `$AnimationPlayer`) are present in the project.
+- There should be **5** mp3 files in the Sounds folder (10 including the .import files)
+- There should be **6** png files in the Sprites folder (12 including the .import files)
+- Ensure the `kirby-super-star-dialogue.ttf` font is properly rendering
 
 ---
 
@@ -41,7 +44,7 @@ Before deploying this game, ensure the following requirements are met:
 - Verify that the game runs without errors in both editor and exported modes.
 - Test for:
   - Key press recognition (`$ButtonToPress` text updates).
-  - Timer functionality (`QTE Timer`).
+  - Timer functionality (`$QTE Timer`).
   - Score updates and high score functionality.
   - Animation and sound effects during the game.
 
@@ -93,14 +96,6 @@ Once deployed, monitor the game for any user feedback related to:
 - **User feedback** regarding the difficulty of the game, animations, or other mechanics.
 
 Regularly check for updates to the Godot engine or any dependencies used in the game, and apply patches or updates as necessary.
-
----
-
-## Team Roles and Responsibilities
-- **Developer(s)**: Responsible for coding, bug fixing, and optimization of the game.
-- **Designer(s)**: Responsible for the game’s UI design, animations, and visual elements.
-- **Tester(s)**: Ensure the game works as intended on all platforms and report bugs or issues.
-- **Project Manager**: Coordinate the release and deployment process.
 
 ---
 
