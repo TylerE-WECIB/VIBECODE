@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bl1yyw3be7p1a"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_05bj0"]
+[ext_resource type="Texture2D" uid="uid://b3qcmgnlyx3i3" path="res://Sprites/crowd.png" id="1_taly0"]
+[ext_resource type="Texture2D" uid="uid://d2qhox33mogtm" path="res://Sprites/stage.png" id="2_harbt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ntew"]
+atlas = ExtResource("1_taly0")
+region = Rect2(0, 0, 258, 146)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63wsf"]
+atlas = ExtResource("1_taly0")
+region = Rect2(258, 0, 258, 146)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2yy6"]
+atlas = ExtResource("1_taly0")
+region = Rect2(516, 0, 258, 146)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c2npq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ntew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63wsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2yy6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_05bj0")
+
+[node name="Crowd" type="AnimatedSprite2D" parent="."]
+position = Vector2(573, 233)
+scale = Vector2(4.55039, 3.24)
+sprite_frames = SubResource("SpriteFrames_c2npq")
+
+[node name="Stage" type="Sprite2D" parent="."]
+position = Vector2(575.5, 324)
+scale = Vector2(4.46124, 3.24)
+texture = ExtResource("2_harbt")
