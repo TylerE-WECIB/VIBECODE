@@ -48,6 +48,7 @@ func _on_qte_timer_timeout() -> void:
 	game_playing = false
 	$AnimationPlayer.play("punch")
 	$ButtonToPress.visible = false
+	$Music.stop()
 	$ButtonToPress.text = str(score*15.8) + " Mt."
 
 

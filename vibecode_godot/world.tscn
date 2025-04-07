@@ -594,7 +594,7 @@ text = "Restart"
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_4hwjm")
-volume_db = -8.914
+autoplay = true
 
 [connection signal="timeout" from="QTE Timer" to="." method="_on_qte_timer_timeout"]
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
