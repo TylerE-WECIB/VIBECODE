@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bl1yyw3be7p1a"]
+[gd_scene load_steps=12 format=3 uid="uid://bl1yyw3be7p1a"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_05bj0"]
 [ext_resource type="Texture2D" uid="uid://b3qcmgnlyx3i3" path="res://Sprites/crowd.png" id="1_taly0"]
@@ -33,6 +33,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_buutw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycutj"]
+
+[sub_resource type="Animation" id="Animation_6seos"]
+resource_name = "punch"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yguho"]
+_data = {
+"punch": SubResource("Animation_6seos")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_05bj0")
 
@@ -45,3 +57,15 @@ sprite_frames = SubResource("SpriteFrames_c2npq")
 position = Vector2(575.5, 324)
 scale = Vector2(4.46124, 3.24)
 texture = ExtResource("2_harbt")
+
+[node name="Kirby" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_buutw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ycutj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatedSprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_yguho")
+}
