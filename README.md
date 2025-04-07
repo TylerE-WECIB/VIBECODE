@@ -20,4 +20,4 @@ What’s one thing you’re proud of?
 - I kept the project scope under control and managed to produce a feature-complete game in the time limit.
 
 What’s one thing you’d improve with more time?
--I'd make the timing after 395 Mt. a little more lenient. It cuts down to 0.1 seconds and it's basically impossible to keep playing unless you get extremely lucky.
+- I'd make the timing after 395 Mt. a little more lenient. It cuts down to 0.1 seconds and it's basically impossible to keep playing unless you get extremely lucky.
