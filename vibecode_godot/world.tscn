@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bl1yyw3be7p1a"]
+[gd_scene load_steps=21 format=3 uid="uid://bl1yyw3be7p1a"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_05bj0"]
 [ext_resource type="Texture2D" uid="uid://b3qcmgnlyx3i3" path="res://Sprites/crowd.png" id="1_taly0"]
 [ext_resource type="Texture2D" uid="uid://d2qhox33mogtm" path="res://Sprites/stage.png" id="2_harbt"]
+[ext_resource type="Texture2D" uid="uid://461od2dljobr" path="res://Sprites/tiles.png" id="4_cakna"]
+[ext_resource type="Texture2D" uid="uid://chv34lc8ssiiw" path="res://Sprites/kirby.png" id="5_cng0u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ntew"]
 atlas = ExtResource("1_taly0")
@@ -33,12 +35,85 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_buutw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbh4y"]
+atlas = ExtResource("4_cakna")
+region = Rect2(0, 0, 62, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf6it"]
+atlas = ExtResource("4_cakna")
+region = Rect2(62, 0, 62, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwydn"]
+atlas = ExtResource("4_cakna")
+region = Rect2(124, 0, 62, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jt7n"]
+atlas = ExtResource("4_cakna")
+region = Rect2(186, 0, 62, 41)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ycutj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbh4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf6it")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwydn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jt7n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bibw2"]
+atlas = ExtResource("5_cng0u")
+region = Rect2(0, 0, 28, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3h3t"]
+atlas = ExtResource("5_cng0u")
+region = Rect2(28, 0, 28, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdqqp"]
+atlas = ExtResource("5_cng0u")
+region = Rect2(56, 0, 28, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_buutw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bibw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3h3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdqqp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_6seos"]
 resource_name = "punch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Kirby:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yguho"]
 _data = {
@@ -58,14 +133,18 @@ position = Vector2(575.5, 324)
 scale = Vector2(4.46124, 3.24)
 texture = ExtResource("2_harbt")
 
-[node name="Kirby" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_buutw")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Tiles" type="AnimatedSprite2D" parent="."]
+position = Vector2(575, 476)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ycutj")
 
+[node name="Kirby" type="AnimatedSprite2D" parent="."]
+position = Vector2(582, 366)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_buutw")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../AnimatedSprite2D")
+root_node = NodePath("../Tiles")
 libraries = {
 "": SubResource("AnimationLibrary_yguho")
 }
