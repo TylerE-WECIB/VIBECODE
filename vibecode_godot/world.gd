@@ -16,6 +16,7 @@ func _ready() -> void:
 	$EarthGone.visible = false
 	$ButtonToPress.visible = true
 	$ProgressBar.visible = true
+	$Restart.visible = false
 	randomize()
 
 
@@ -34,10 +35,21 @@ func _process(delta: float) -> void:
 			
 		if Input.is_action_just_pressed(wanted_key) and not key_pressed:
 			key_pressed = true
+			if $AnimationPlayer.current_animation != "punch":
+				$AnimationPlayer.stop()
 			score += 1
 			if score % 5 == 0:
 				time_to_press = clamp(time_to_press - 0.5, 0.1, time_to_press)
+				$AnimationPlayer.play("screen_shake_big")
+			else:
+				$AnimationPlayer.play("screen_shake")
 
 func _on_qte_timer_timeout() -> void:
 	game_playing = false
 	$AnimationPlayer.play("punch")
+	$ButtonToPress.visible = false
+	$ButtonToPress.text = str(score*15.8) + " Mt."
+
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()

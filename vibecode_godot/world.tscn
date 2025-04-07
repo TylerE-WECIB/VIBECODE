@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bl1yyw3be7p1a"]
+[gd_scene load_steps=50 format=3 uid="uid://bl1yyw3be7p1a"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_05bj0"]
 [ext_resource type="Texture2D" uid="uid://b3qcmgnlyx3i3" path="res://Sprites/crowd.png" id="1_taly0"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cbrk085djc32l" path="res://Sprites/boom.png" id="5_4wdel"]
 [ext_resource type="Texture2D" uid="uid://chv34lc8ssiiw" path="res://Sprites/kirby.png" id="5_cng0u"]
 [ext_resource type="Texture2D" uid="uid://df6wdgbhoo3e1" path="res://Sprites/kaboom.png" id="6_17j2v"]
+[ext_resource type="AudioStream" uid="uid://bs13ydu7i3brw" path="res://Sounds/deltarune-explosion.mp3" id="7_fhper"]
+[ext_resource type="FontFile" uid="uid://bybi7jfy1jyk8" path="res://kirby-super-star-dialogue.ttf" id="8_ukkdd"]
+[ext_resource type="AudioStream" uid="uid://g1645xxje144" path="res://Sounds/youtube_OAdKmgQa7Us_audio.mp3" id="10_4hwjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ntew"]
 atlas = ExtResource("1_taly0")
@@ -189,10 +192,10 @@ tracks/6/path = NodePath("../ButtonToPress:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.53333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -206,6 +209,33 @@ tracks/7/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Restart:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Sfx")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_fhper")
+}],
+"times": PackedFloat32Array(1.6)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_qdqjq"]
 length = 0.001
@@ -293,11 +323,57 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Restart:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_b1ped"]
+resource_name = "screen_shake"
+length = 0.233337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, 0), Vector2(5, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_whgiq"]
+resource_name = "screen_shake_big"
+length = 0.233337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-20, 0), Vector2(20, 0), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yguho"]
 _data = {
 "RESET": SubResource("Animation_qdqjq"),
-"punch": SubResource("Animation_6seos")
+"punch": SubResource("Animation_6seos"),
+"screen_shake": SubResource("Animation_b1ped"),
+"screen_shake_big": SubResource("Animation_whgiq")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h52wt"]
@@ -423,10 +499,17 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_c7wth"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_moqq1"]
+font = ExtResource("8_ukkdd")
 font_size = 70
 font_color = Color(0.972549, 0.909804, 0.282353, 1)
-outline_size = 13
+outline_size = 9
 outline_color = Color(0.533333, 0.0941176, 0.0941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjjfr"]
+bg_color = Color(0.537255, 0.0980392, 0.0941176, 0.698039)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6u73"]
+bg_color = Color(0.972549, 0.909804, 0.282353, 1)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_05bj0")
@@ -444,17 +527,17 @@ scale = Vector2(4.55039, 3.90767)
 sprite_frames = SubResource("SpriteFrames_c2npq")
 
 [node name="Stage" type="Sprite2D" parent="."]
-position = Vector2(579, 334)
-scale = Vector2(4.54264, 3.34)
+position = Vector2(575.5, 334)
+scale = Vector2(4.56977, 3.34)
 texture = ExtResource("2_harbt")
 
 [node name="Tiles" type="AnimatedSprite2D" parent="."]
-position = Vector2(575, 476)
+position = Vector2(575, 535)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ycutj")
 
 [node name="Kirby" type="AnimatedSprite2D" parent="."]
-position = Vector2(582, 366)
+position = Vector2(582, 425)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_buutw")
 
@@ -480,9 +563,9 @@ sprite_frames = SubResource("SpriteFrames_c7wth")
 
 [node name="ButtonToPress" type="Label" parent="."]
 offset_left = 297.0
-offset_top = 182.0
+offset_top = 225.0
 offset_right = 862.0
-offset_bottom = 278.0
+offset_bottom = 321.0
 text = "a"
 label_settings = SubResource("LabelSettings_moqq1")
 horizontal_alignment = 1
@@ -493,8 +576,25 @@ one_shot = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = 453.0
-offset_top = 273.0
+offset_top = 332.0
 offset_right = 701.0
-offset_bottom = 300.0
+offset_bottom = 359.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjjfr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t6u73")
+show_percentage = false
+
+[node name="Restart" type="Button" parent="."]
+offset_left = 453.0
+offset_top = 537.0
+offset_right = 692.0
+offset_bottom = 621.0
+theme_override_fonts/font = ExtResource("8_ukkdd")
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_4hwjm")
+volume_db = -8.914
 
 [connection signal="timeout" from="QTE Timer" to="." method="_on_qte_timer_timeout"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
