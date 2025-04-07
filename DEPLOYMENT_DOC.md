@@ -10,7 +10,7 @@ Before deploying this game, ensure the following requirements are met:
 
 ### Software Requirements:
 - **Godot Engine** (version 4.3 or later)
-- **Operating System**: Cross-platform (Windows, macOS, Linux) support.
+- **Operating System**: Windows (untested on macOS or Linux)
 
 ### Hardware Requirements:
 - **Minimum System Specs**: Moderate CPU and GPU capable of running basic 2D games.
